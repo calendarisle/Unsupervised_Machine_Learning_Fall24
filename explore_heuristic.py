@@ -21,7 +21,7 @@ def explore_heuristic(num_samples, bounds, previous_samples, epsilon=0.5):
 
     # Repeatedly sample uniformly and remove samples
     # that are within some distance of the original samples.
-    max_iter = 300
+    max_iter = 75
     iteration = 0
     sample_list = []
     while len(sample_list) != num_samples:
@@ -63,7 +63,10 @@ def explore_heuristic(num_samples, bounds, previous_samples, epsilon=0.5):
 
         if iteration >= max_iter:
             print("Exceeded max iterations!")
-            break
+            if len(sample_list)==0:
+                return None
+            return np.concatenate((sample_list))
+        iteration += 1
     
     return np.concatenate((sample_list))
 
