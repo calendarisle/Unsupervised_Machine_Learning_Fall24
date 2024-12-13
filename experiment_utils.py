@@ -192,7 +192,9 @@ def attack_experiment(original_data, original_kmeans, num_rounds, samps_per_roun
         return acc_list
 
 
-def acc_plot(all_acc_lists, names, xticks=None):
+def acc_plot(all_acc_lists, names, xticks=None,
+             title="Ablation", xaxis_label="Sampling"
+    ):
     """ Create a plot for an ablation experiment.
 
     """
@@ -210,9 +212,11 @@ def acc_plot(all_acc_lists, names, xticks=None):
         )
     ax.set_xticks(range(len(xticks)))
     ax.set_xticklabels(xticks, fontsize=12)
-    ax.set_xlabel("Sampling", fontsize=14) 
+    ax.set_xlabel(xaxis_label, fontsize=14)
+    ax.set_ylabel("Accuracy", fontsize=14) 
 
-    plt.title("Sample Ablation")
+    plt.title(title)
     plt.legend()
+    plt.tight_layout()
     plt.show()
     plt.clf()
